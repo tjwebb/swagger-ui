@@ -1,10 +1,21 @@
 sudo: false
 language: node_js
 node_js:
-  - '0.10'
   - '0.12'
+
 install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - npm i -g jshint
   - npm install
+
+deploy:
+  provider: s3
+  access_key_id: AKIAJDDWF26C4PEUXY7Q
+  secret_access_key:
+    secure: FaD6Z+QPlKifrAgYZ3NmdPZ9tWMjRsOgN3QRwIr5SjZ/NtpK+o6vI9BKsT9/VH/0NbSqRgiCukT3r+pJzfysm1FXOnFtiuEs6fjAQXTXg0a1ClB/urYdJjIUS+es7EHHILf18vnUart6eMDHgAtQpmV+1/vQ6JsUOaSN1LLElTxlaBVhGZ5rLCUQ5JW8QUn51aHnJMNC4D2E+uCsBA2oaXxHyG51TPs5vglFJEE9WArH5a6YezS1H6b8UYrycLeltaDlxK0fqwIa8+e28osMpBIml9xhZCEMcPBqtDsR255EiMNDQOfBDZz+N2TciRrOER+YnK/Z1jlfynCXsaF3d6aLgy+3GxH68gN79KUXzSLCzMvrWZbzfhpa1iy4WpXiy22EDxWxA6OtANJi98CKRO55vSUT5KsTElDTYZQHWn5lZwQvPpC8CD9hzZFj+jY+pdXku4PI5stkeDerBkk6AW5UNSC6oqVpAOBIQ8xIirkEObQWgAzgVJlaNcrRgd0RSpzt2aqDqucsZHQ0+7tG46cqz4VvbeycQLFwXqr+DKeu/ec3Fc+bOiMEhITLgGSbVA781vkjWaqpY6s9mgBX+X7rm/5T1KRB8UtZ04pbHMW9mIfI+h6f+lGrZo3IvTFqBdnvJDqltaM5Itj8BJ82E6JuTw/Z6J26KLSJCPirmtE=
+  bucket: swagger.balderdash.io
+  local-dir: dist
+  acl: public_read
+  on:
+    repo: tjwebb/swagger-ui
