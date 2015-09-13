@@ -12,6 +12,10 @@ install:
 script:
   - echo "skipping tests"
 
+before_deploy:
+  - rm -rf dist/
+  - gulp
+
 deploy:
   provider: s3
   access_key_id: AKIAJDDWF26C4PEUXY7Q
